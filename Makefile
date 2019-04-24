@@ -1,11 +1,13 @@
-.PHONY: src main
-src:
-	mkdir build && cd build && cmake ../src && make 
-	
-main: 
-	cd test && mkdir build && cd build && cmake ../ && make 
+.PHONY: build test clc clean
 
+all: build test clc
 
-clean:
-	rm -rf build
-	rm -rf src/CMakeFiles
+build:
+	mkdir build_src && cd build_src && cmake ../src && make 
+
+test:
+	mkdir build_main && cd build_main && cmake ../test && make 
+
+clc:
+	rm -rf build_src
+	rm -rf build_main
